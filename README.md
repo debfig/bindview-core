@@ -280,3 +280,33 @@ new Bindview({
 })
 
 ```
+
+> ### 9. use 方法向原型上添加方法或属性
+>
+> 使用 `use` 方法可以向构造函数的原型上添加属性或方法，在创造实例前调用使用，有两种使用方法，第一种每次只能添加一个方法或属性，第二种使用对象形式可以添加多个方法或属性
+
+```js
+import Bindview from "../../bindview"
+
+import Test from "./Components/Test"
+
+// 使用一
+Bindview.use('Test', Test)
+
+// 使用二
+Bindview.use({
+    Test, // 举例
+    Test1 // 举例
+})
+
+new Bindview({
+  el: '#App',
+  node(h) {
+    return (
+      <div id='div' ref='div'>hello</div>
+    )
+  }
+})
+
+```
+
