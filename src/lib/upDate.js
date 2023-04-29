@@ -3,9 +3,6 @@
  */
 export default function () {
 
-  //* 生命周期调用
-  if (this.life.upDate) { this.life.upDate.call(this) };
-
   // 通过node获取最新的虚拟DOM
   let Original = this._handleJSXVonde(this._Original.get('_Original_Vnode').node.call(this.data, this._h));
 

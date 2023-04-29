@@ -103,6 +103,19 @@ export default function (oldVnode, newVnode) {
     oldElement.appendChild(_this._loopCreateNode(newNodeKey));
   }
 
+
+  /**
+   * 旧子节点为空，新字节数量大于1添加，节点
+   * @param {*} fatherNode 父节点
+   * @param {*} newVnode 新的子节点数组
+   */
+  function insertMaxNode(fatherNode, newVnode) {
+    let fatherElement = _this._KeyMapDom.get(fatherNode.key);
+    for (let i of newVnode) {
+      fatherElement.appendChild(_this._loopCreateNode(i));
+    }
+  }
+
   /**
    * 移除节点
    * @param {*} newVnode 新的子节点数组
@@ -201,7 +214,11 @@ export default function (oldVnode, newVnode) {
             //* 判断数组中是否有值,如果没有直接false到末尾添加，有的话判断是是否在中位添加的
             // 中间插入节点
             middleAddNode(oldVnode, newVnode[i], oldVnode[i])
-          } else if (oldVnode, oldVnode[i][0] ? oldVnode[i][0].key === newVnode[i][0].key && oldVnode[i][oldVnode[i].length - 1].key !== newVnode[i][newVnode[i].length - 1].key : true) {
+          } else if (oldVnode[i].length === 0 ? newVnode[i].length > 1 : false) {
+            //* 判断旧的子节点为空，新的子节点添加了大于一的子节点
+            // 大量添加
+            insertMaxNode(oldVnode, newVnode[i]);
+          } else if (oldVnode[i][0] ? oldVnode[i][0].key === newVnode[i][0].key && oldVnode[i][oldVnode[i].length - 1].key !== newVnode[i][newVnode[i].length - 1].key : true) {
             //* 判断数组中是否有值,如果没有直接到末尾添加，有的话判断是是否在末尾位添加的
             // 末尾添加节点
             belowAddNode(newVnode[i], oldVnode);

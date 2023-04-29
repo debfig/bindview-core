@@ -14,7 +14,7 @@ function Bindview(config) {
 }
 
 // 构造函数版本属性
-Bindview.version = '2.0.2';
+Bindview.version = '2.0.3';
 
 // 导入挂载原型对象函数
 import use from "./use";

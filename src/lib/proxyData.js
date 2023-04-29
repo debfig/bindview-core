@@ -20,8 +20,11 @@ export default function (object, value, fun, state = false) {
         set(val) {
           addobject = val;
           d_fun.call(_this);
-          // 组件更新
+          // 调用函更新数组件
           _this._upDateComponent();
+
+          //* 生命周期调用
+          if (_this.life.upDate) { _this.life.upDate.call(this) };
         }
       });
     };

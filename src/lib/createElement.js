@@ -25,9 +25,8 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
     // 判断是不是命名空间标签
     if (tagName in NAME_SPACE) {
       el = NAME_SPACE[tagName]();
-    }
-    // 判断是不是租价标签 是组件标签的创造组件传递组件参数后 return 
-    if (tagName in this._module) {
+    } else if (tagName in this._module) {
+      // 判断是不是租价标签 是组件标签的创造组件传递组件参数后 return 
       if (props.prop) {
         return this._initComponents(this._module[tagName], props.prop);
       } else {
