@@ -29,7 +29,7 @@
 >第一种对象写法 这种写法不推荐了结即可
 ```js
   const Bv = new Bindview({
-    el: '#app',
+    el: '#Root',
     data: {
       title: 'hello Bindview.js'
     },
@@ -51,7 +51,7 @@
 > 第二种写法 使用`h`函数来创建虚拟DOM这种写法可以在`webpack`环境下使用，也可以在浏览器环境下使用
 ```js
   const Bv = new Bindview({
-    el: '#app',
+    el: '#Root',
     data: {
       title: 'hello Bindview.js',
     },
@@ -70,7 +70,7 @@
 > 第三种写法 使用`JSX`来编写结构,在bindview提供的bindview-Template中可以使用,下面的例子都将使用JSX形式
 ```jsx
   const Bv = new Bindview({
-    el: '#app',
+    el: '#Root',
     data: {
       title: 'hello Bindview.js',
     },
@@ -89,7 +89,7 @@
 >`methods`配置对象用来配置需要使用到的方法,可以在`JSX`上通过`onClick` 属性来绑定一个点击事件属性值为事件的回调函数例如`onClick={add}`，也可以通过`onClick={[add,value1,value2]}` 这种方式来传递参数,  在JSX中添加`ref`属性，构造函数实例上有一个`refs`属性,属性值就是添加了`ref`属性的JSX元素所对应的真实`dom`元素 ，如果多个`ref`属性的值相同那么`refs`上会以数组的方式存储
 ```jsx
   const Bv = new Bindview({
-    el: '#app',
+    el: '#Root',
     node(h) {
       return (
         <div>
@@ -126,7 +126,7 @@
 |  `upDate`   |    `data` 更新后    |
 ```jsx
   const An = new Bindview({
-    el: '#app',
+    el: '#Root',
     node(h) {
       return (
         <div>'生命周期'</div>
@@ -158,7 +158,7 @@
   })
 
   const Bv = new Bindview({
-    el: '#app',
+    el: '#Root',
     node(h) {
       return (
         <div>"在data原型上添加方法"</div>
@@ -173,7 +173,7 @@
 >调用`$add()`方法传入一个对象，他可以将对象中的属性和方法添加到 `data` 上
 ```jsx
   const Bv = new Bindview({
-    el: '#app',
+    el: '#Root',
     data: {},
     node(h) {
       return (<div>"$add方法"</div>)
@@ -215,7 +215,7 @@ Bindview.prototype.$addModule('Test1', Test1)
 Bindview.prototype.$addModule({Test,Test1})
 
 new Bindview({
-  el: '#App',
+  el: '#Root',
   node() {
     return (
       <div class="root">
@@ -255,7 +255,7 @@ export default function (title) {
 import Bindview from "../../bindview"
 import HelloWorld from "./Components/HelloWorld";
 new Bindview({
-  el: '#App',
+  el: '#Root',
   node(h) {
     return (
       <div class="root">
@@ -281,9 +281,9 @@ new Bindview({
 
 ```
 
-> ### 9. use 方法向原型上添加方法或属性
+> ### 9. proto 方法向原型上添加方法或属性
 >
-> 使用 `use` 方法可以向构造函数的原型上添加属性或方法，在创造实例前调用使用，有两种使用方法，第一种每次只能添加一个方法或属性，第二种使用对象形式可以添加多个方法或属性
+> 使用 `proto` 方法可以向构造函数的原型上添加属性或方法，在创造实例前调用使用，有两种使用方法，第一种每次只能添加一个方法或属性，第二种使用对象形式可以添加多个方法或属性
 
 ```js
 import Bindview from "../../bindview"
@@ -291,16 +291,16 @@ import Bindview from "../../bindview"
 import Test from "./Components/Test"
 
 // 使用一
-Bindview.use('Test', Test)
+Bindview.proto('Test', Test)
 
 // 使用二
-Bindview.use({
+Bindview.proto({
     Test, // 举例
     Test1 // 举例
 })
 
 new Bindview({
-  el: '#App',
+  el: '#Root',
   node(h) {
     return (
       <div id='div' ref='div'>hello</div>

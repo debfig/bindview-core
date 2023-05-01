@@ -17,8 +17,8 @@ function Bindview(config) {
 Bindview.version = '2.0.3';
 
 // 导入挂载原型对象函数
-import use from "./use";
-Bindview.use = use;
+import proto from "./proto";
+Bindview.proto = proto;
 
 // 导入和挂载初始化函数
 import Init from "./Init";
