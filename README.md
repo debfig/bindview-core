@@ -310,3 +310,81 @@ new Bindview({
 
 ```
 
+> ### 10. 插槽
+>
+> 插槽是组件中不确定的部分由用户来定义，这部分就叫插槽，相当于一种占位符,在`Bindview`中每个组件只支持一个插槽
+
+```jsx
+// 定义插槽
+export default function () {
+  const { slot } = this;
+  // 通过结构 this 获得 slot, 如果组件插槽中有内容 slot 为函数，如果没有为 null
+    
+  return {
+    name: 'Slot',
+    node() {
+      return (
+        <div>
+          <div>插槽</div>
+          // slot 需要在一个节点中调用, 下面使用三目表达式添加一个默认内容
+          // slot 在调用时可以传递一些参数,在自定义内容时可以使用
+          <div className="slot">{slot ? slot(this.num, ' Slot组件') : '默认内容'}</div>
+          <button onClick={() => this.num++}>Slot data num++</button>
+        </div>
+      )
+    },
+    data: {
+      num: 0
+    }
+  }
+}
+```
+
+```jsx
+//使用插槽
+import Slot from "./Components/Slot"
+
+export default function () {
+  return {
+    name: 'App',
+    node() {
+      return (
+        <div id="App" ref='App'>
+         // 在组件组件中使用一个函数返回内容，这里的形参是定义插槽是传递的参数
+          <Slot>
+            {(i, title) => (
+                <ul>
+                  <li>{i}{title}</li>
+                  <li>{this.title} App组件</li>
+                </ul>
+             )}
+          </Slot>
+          // 不使用函数返回也是可以的,但会失去响应式
+          <Slot>
+             <div>{this.title}</div>
+          </Slot>
+          // 如果内容中有组件需要在定义插槽的组件中注册这个组件，或已在全局注册了这个组件
+          <Slot>
+            <Toast prop={['插槽', 5000]} />
+          </Slot>
+          <button onClick={() => this.title++}>App data title++</button>
+        </div>
+      )
+    },
+    data: {
+      title: 0,
+    },
+    life: {
+      createDom() {
+        console.log(this);
+      }
+    },
+    module: {
+      Slot
+    }
+  }
+}
+```
+
+
+
