@@ -1,4 +1,5 @@
 import { err, warn } from "../tools";
+import { NAME_SPACE, HTML_TAGS } from "../tools/dict"
 /**
  * 新旧虚拟DOM对比差异,调用对应函数更新视图
  * @param {*} oldVnode 旧虚拟DOM
@@ -193,7 +194,9 @@ export default function (oldVnode, newVnode) {
         oldVnode[i] === newVnode[i] ? true : err('禁止动态的改变Key');
         break;
       case "children":
-        if (oldVnode[i].length === newVnode[i].length) {
+        if (((newVnode.elementName in HTML_TAGS) !== true || !(newVnode.elementName in NAME_SPACE) !== true) && (newVnode.elementName in _this._module)) {
+
+        } else if (oldVnode[i].length === newVnode[i].length) {
           // 子节点长度不变
           for (let j = 0; j < newVnode[i].length; j++) {
             _this._diffUpdateView(oldVnode[i][j], newVnode[i][j]);

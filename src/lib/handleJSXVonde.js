@@ -7,7 +7,7 @@ export default function (JSXVonde) {
   newVnode.elementName = JSXVonde.elementName;
   newVnode.attributes = JSXVonde.attributes;
   newVnode.key = this._uuid()
-  if (JSXVonde.children !== null && JSXVonde.children.length > 1) {
+  if (JSXVonde.children && JSXVonde.children.length && JSXVonde.children.length > 1) {
     newVnode.children = [];
     for (let i = 0; i < JSXVonde.children.length; i++) {
       newVnode.children[i] = (() => {
@@ -36,9 +36,12 @@ export default function (JSXVonde) {
     for (let i = 0; i < JSXVonde.children[0].length; i++) {
       newVnode.children.push(this._handleJSXVonde(JSXVonde.children[0][i]))
     }
+  } else if (JSXVonde.children[0] instanceof Function) {
+    newVnode.children = [];
+    newVnode.children.push(JSXVonde.children[0]);
   } else if (JSXVonde.children[0] instanceof Object) {
     newVnode.children = [];
-    newVnode.children[0] = this._handleJSXVonde(JSXVonde.children[0]);
+    newVnode.children[0] = (JSXVonde.children[0].type && JSXVonde.children[0].type === 'text') ? JSXVonde.children[0] : this._handleJSXVonde(JSXVonde.children[0]);
   }
 
   return newVnode;

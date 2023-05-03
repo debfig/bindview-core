@@ -10,6 +10,7 @@ import { NAME_SPACE, CUSTOM_ATTR, GLOBAL_ATTRIBUTES, EVENT_HANDLERS, HTML_TAGS }
  * @returns 
  */
 export default function createElement(tagName, props = {}, key, ...childNodes) {
+
   if (props === null) {
     props = {}
   }
@@ -28,9 +29,9 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
     } else if (tagName in this._module) {
       // 判断是不是租价标签 是组件标签的创造组件传递组件参数后 return 
       if (props.prop) {
-        return this._initComponents(this._module[tagName], props.prop);
+        return this._initComponents(this._module[tagName], props.prop, childNodes);
       } else {
-        return this._initComponents(this._module[tagName]);
+        return this._initComponents(this._module[tagName], undefined, childNodes);
       }
     } else {
       err(`没有注册 ${tagName} 这个组件`)
