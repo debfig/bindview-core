@@ -4,4 +4,6 @@
  */
 export default function (data) {
   this._proxyData(this.data, data, this._upDate);
+  // 添加后调用更新函数
+  this._upDate()
 }

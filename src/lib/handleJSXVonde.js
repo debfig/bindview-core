@@ -17,6 +17,8 @@ export default function (JSXVonde) {
             key: this._uuid(),
             value: JSXVonde.children[i]
           }
+        } else if (JSXVonde.children[i].type && JSXVonde.children[i].type === 'text') {
+          return JSXVonde.children[i];
         } else {
           return this._handleJSXVonde(JSXVonde.children[i])
         }
