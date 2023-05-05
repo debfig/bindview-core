@@ -386,5 +386,23 @@ export default function () {
 }
 ```
 
+> ### 11. linkage 配置项
+>
+> `lingkage` 配置项值为布尔值，默认值为 `true` ,它是用于控制父组件中的数据发生改变时，是否对子组件进行更新，使用场景在子组件展示一些数据但不需要响应式更新的地方，可以使用 `linkage:false`来关闭来自父组件的更新调用
 
+```jsx
+// 子组件中配置
+import style from "./index.less"
+export default function (value) {
+  return {
+    name: 'Table',
+    linkage: false,
+    node(h) {
+      return (
+        <div className={style["Table"]}>{value()}</div>
+      )
+    }
+  }
+}
+```
 
