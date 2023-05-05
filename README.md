@@ -93,7 +93,7 @@
     node(h) {
       return (
         <div>
-          <p ref="p1">{h.title}</p>
+          <p ref="p1">{this.title}</p>
           <button onClick={[h.add,'hello','bindview.js']}>'title++'</button>
         </div>
       )
