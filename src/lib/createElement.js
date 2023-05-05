@@ -81,6 +81,10 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
           break;
       }
     }
+    // 标签上自定义属性的添加
+    if (!(prop in attrs || prop in EVENT_HANDLERS || prop in CUSTOM_ATTR)) {
+      el.setAttribute(prop, props[prop])
+    }
   })
   if ('style' in props) {
     const styles = props.style

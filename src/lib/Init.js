@@ -8,6 +8,9 @@ export default function (config) {
   // name 属性
   if (config.name) this.name = config.name;
 
+  // 父组件data更新后对子组件的更新控制
+  this._linkage = config.linkage !== undefined ? config.linkage : true;
+
   // 创建用于获取原始 Vnode 的Map映射
   this._Original = new Map();
   //映射dom树

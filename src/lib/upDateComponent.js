@@ -3,8 +3,10 @@
  */
 export default function () {
   this._Components.forEach(item => {
-    item._upDate();
-    // 当数据发生改变依次调用后代组件的更新函数
-    item._upDateComponent();
+    if (item._linkage) {
+      item._upDate();
+      // 当数据发生改变依次调用后代组件的更新函数
+      item._upDateComponent();
+    }
   })
 }
