@@ -406,3 +406,31 @@ export default function (value) {
 }
 ```
 
+> ### 12. $getTxt & $setTxt
+>
+> `$getTxt` & `$setTxt` 方法用来获取后修改dom节点下文本节点的值,适用于dom节点下只有一个文本节点的地方，如果dom节点下除了文本节点还有其他节点会导致一些错误
+
+```jsx
+import Bindview from "../../bindview"
+
+new Bindview({
+  el: '#Root',
+  node(h) {
+    return (
+      <div>
+      	<button onClick={h.getTxt}>$getTxt</button>
+        <button onClick={h.setTxt}>$setTxt</button>
+      </div>
+    )
+  },
+  methods:{
+      getTxt(dom){
+          console.log(this.$getTxt(dom));
+      },
+      setTxt(dom){
+          console.log(this.$setTxt(dom,'new Value'))
+      }
+  	}
+})
+```
+

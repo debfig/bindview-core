@@ -75,6 +75,10 @@ Bindview.prototype._loopCreateNode = loopCreateNode
 import getTxt from "./getTxt"
 Bindview.prototype.$getTxt = getTxt;
 
+// 导入和挂载设置节点下的文本
+import setTxt from "./setTxt";
+Bindview.prototype.$setTxt = setTxt;
+
 // 导入 Vnode 克隆函数
 import deepClone from "./deepClone"
 Bindview.prototype._deepClone = deepClone;
