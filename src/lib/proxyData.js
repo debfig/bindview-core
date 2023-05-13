@@ -18,13 +18,17 @@ export default function (object, value, fun, state = false) {
           return addobject
         },
         set(val) {
-          addobject = val;
-          d_fun.call(_this);
-          // 调用函更新数组件
-          _this._upDateComponent();
+          if (typeof val === 'string' || typeof val === 'number' || val instanceof Object) {
+            if (JSON.stringify(addobject) !== JSON.stringify(val)) {
+              addobject = val;
+              d_fun.call(_this);
+              // 调用函更新数组件
+              _this._upDateComponent();
 
-          //* 生命周期调用
-          if (_this.life.upDate) { _this.life.upDate.call(this) };
+              //* 生命周期调用
+              if (_this.life.upDate) { _this.life.upDate.call(_this) };
+            }
+          }
         }
       });
     };
@@ -38,6 +42,8 @@ export default function (object, value, fun, state = false) {
           // 这步是为了让对数组的的操作先执行，在执行函数的调用
           setTimeout(function () {
             funs.call(_this);
+            // 调用函更新数组件
+            _this._upDateComponent();
           }, 0);
 
           let tempdata = args;
