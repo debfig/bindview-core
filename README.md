@@ -434,3 +434,70 @@ new Bindview({
 })
 ```
 
+> ### 13. send 方法
+>
+> `send` 方法简化组件间传递参数的方法，该方法需要传入两个参数 1.数据源 2.数据项，该方法会返回一个对象对象中有两个方法分被是`get` `set` 用来获取和修改数据
+
+```jsx
+import { Bindview, send } from "../../bindview"
+
+// Dome 组件
+function Dome(props) {
+
+  let { num, arr } = props
+
+  return {
+    name: 'Dome',
+    node(h) {
+      return (
+        <div>
+          <div>Dome</div>
+          <div>{num.get()}</div>
+          <button onClick={h.set}>set</button>
+          <div>{arr.get()}</div>
+          <button onClick={h.setArr}>setArr</button>
+        </div>
+      )
+    },
+    methods: {
+      set() {
+        // 1. num.set(100)
+        // 2. i 是数据
+        num.set(i => {
+          return ++i;
+        })
+      },
+      setArr() {
+        arr.set(100)
+      }
+    }
+  }
+}
+
+
+
+new Bindview({
+  el: '#Root',
+  node(h) {
+    return (
+      <div>
+        <div>App</div>
+        <Dome prop={
+          {
+            num: send(this, 'num'),
+            arr: send(this.arr, 1)
+          }
+        } />
+      </div>
+    )
+  },
+  data: {
+    num: 0,
+    arr: [1, 2, 3, 4]
+  },
+  module: {
+    Dome
+  }
+})
+```
+
