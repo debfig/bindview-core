@@ -173,7 +173,12 @@ export default function (oldVnode, newVnode) {
   for (let i in newVnode) {
     switch (i) {
       case "elementName":
-        oldVnode[i] === newVnode[i] ? true : err('不能动态的改变标签');
+        if (newVnode[i] in NAME_SPACE || newVnode[i] in HTML_TAGS) {
+          oldVnode[i] === newVnode[i] ? true : err('不能动态的改变标签');
+        } else {
+          // 如果是组件停不进行比较
+          return;
+        }
         break;
       case "attributes":
         // 将对象转换为 string 进行粗略比较
