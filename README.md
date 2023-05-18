@@ -124,6 +124,7 @@
 | `createDom` |  `DOM` 元素挂载后   |
 | `domUpdate` |  `DOM` 数量变化后   |
 |  `upDate`   |    `data` 更新后    |
+| `unLoading` |     组件卸载前      |
 ```jsx
   const An = new Bindview({
     el: '#Root',
@@ -482,12 +483,7 @@ new Bindview({
     return (
       <div>
         <div>App</div>
-        <Dome prop={
-          {
-            num: send(this, 'num'),
-            arr: send(this.arr, 1)
-          }
-        } />
+        <Dome num={send(this, 'num')} arr={send(this.arr, 1)} />
       </div>
     )
   },
@@ -499,5 +495,59 @@ new Bindview({
     Dome
   }
 })
+```
+
+> ### 14. $unload 和 $mount
+>
+> 这两个方法分别为卸载组件(`$unload`)和挂载组件(`$mount`)
+
+```jsx
+import Bindview from "bindview"
+
+function Dome(){
+    return {
+        name:'Dome',
+        node(h){
+            return (
+            	<div>
+                	<div>Div</div>
+                    <hr />
+                    <button onClick={h.remove}>卸载组件</button>
+                </div>
+            )
+        },
+        methods:{
+            remove(){
+                // 卸载当前组件
+                this.$unload();
+            }
+        }
+    }
+}
+
+
+
+new Bindview({
+    // 使用 $mount 挂载组件时，添加该配置项
+    isModule:true,
+    node(){
+        return (
+        	<div>
+            	<div>App</div>
+                <div class="Box" ref='Box'></div>
+            </div>
+        )
+    },
+    life:{
+        createDom(){
+            // 传两个参数可以将组件挂载到指定位置
+            // 参数一为组件容器 
+            // 参数二为组件函数得到调用
+            this.$mount(this.refs.Box,Dome());
+        }
+    }
+}).$mount('#Root')
+// 该挂载组件方法只适合在 new Bindview 的时候
+// 参数为一个是 $mount 会在页面上获取这个 DOM元素并将该组件挂载上去
 ```
 
