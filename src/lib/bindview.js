@@ -31,6 +31,14 @@ Bindview.prototype._dataProto = Object.create(Object.prototype);
 import dataProto from "./dataProto";
 Bindview.prototype.$dataProto = dataProto;
 
+// 导入和挂载卸载组件函数
+import unload from "./unload";
+Bindview.prototype.$unload = unload;
+
+// 导入和挂载安装组件函数
+import mount from "./mount";
+Bindview.prototype.$mount = mount;
+
 // 导入创建data函数
 import createData from "./createData";
 Bindview.prototype._createData = createData;

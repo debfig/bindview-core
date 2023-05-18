@@ -27,12 +27,8 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
     if (tagName in NAME_SPACE) {
       el = NAME_SPACE[tagName]();
     } else if (tagName in this._module) {
-      // 判断是不是租价标签 是组件标签的创造组件传递组件参数后 return 
-      if (props.prop) {
-        return this._initComponents(this._module[tagName], props.prop, childNodes);
-      } else {
-        return this._initComponents(this._module[tagName], undefined, childNodes);
-      }
+      // 判断是不是组件标签 是组件标签的创造组件传递组件参数后 return 
+      return this._initComponents(this._module[tagName], props, childNodes);
     } else {
       err(`没有注册 ${tagName} 这个组件`)
     }

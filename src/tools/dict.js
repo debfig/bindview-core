@@ -478,6 +478,10 @@ const NAME_SPACE = {
   use: function () {
     const ns = 'http://www.w3.org/2000/svg';
     return document.createElementNS(ns, 'use');
+  },
+  path: function () {
+    const ns = 'http://www.w3.org/2000/svg';
+    return document.createElementNS(ns, 'path');
   }
 }
 

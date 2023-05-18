@@ -25,7 +25,7 @@ export default function (module, prop, slot) {
 
   Component.__proto__ = this.__proto__;
   if (module instanceof Function) {
-    let moduleExample = prop !== undefined ? prop instanceof Array ? module.call(config, ...prop) : module.call(config, prop) : module.call(config);
+    let moduleExample = module.call(config, prop);
     moduleExample.isModule = true;
     Component._Init(moduleExample)
     this._Components.push(Component)
