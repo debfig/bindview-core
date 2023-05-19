@@ -1,4 +1,4 @@
-## bindview.js [![npm](https://img.shields.io/npm/v/bindview.svg)](https://www.npmjs.com/package/bindview)
+## bindview.js
 ### 1. 重新设计虚拟DOM
 
 > 其他部分与原来无异，改变的是文本节点将文本节点变为一个对象，由 `type`,`value`,`key` 来描述，最终将文本创建为一个节点来达到准确更新
