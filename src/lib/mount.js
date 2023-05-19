@@ -14,6 +14,8 @@ export default function (container, module) {
       component.__proto__ = this.__proto__
       if (!module.isModule) module.isModule = true;
       component._Init(module)
+      component._clearModules = this._clearModule();
+      this._Components.set(component._moduleKey, component)
       Container.appendChild(component.el)
       return component;
   }

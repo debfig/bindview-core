@@ -47,8 +47,11 @@ export default function (config) {
   // 向外暴露接口
   this._modulePort = config.modulePort ? this._handlePotrThis(config.modulePort) : new Object();
 
-  // 子组件
-  this._Components = new Array();
+  // 组间key
+  this._moduleKey = this._uuid();
+
+  //Map记录子组件
+  this._Components = new Map();
 
   //组件初始化
   let module = config.module !== undefined ? { ...config.module } : new Object();

@@ -118,6 +118,9 @@ Bindview.prototype._handlePotrThis = handlePotrThis;
 import handlePort from "./handlePort";
 Bindview.prototype._handlePort = handlePort;
 
+// 清除组件实例
+import clearModule from "./clearModule";
+Bindview.prototype._clearModule = clearModule;
 
 console.log(`%c bindview.js %c v${Bindview.version} `,
   'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',

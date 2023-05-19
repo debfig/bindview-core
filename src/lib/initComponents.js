@@ -28,7 +28,8 @@ export default function (module, prop, slot) {
     let moduleExample = module.call(config, prop);
     moduleExample.isModule = true;
     Component._Init(moduleExample)
-    this._Components.push(Component)
+    Component._clearModules = this._clearModule();
+    this._Components.set(Component._moduleKey, Component)
   }
   this._handlePort(Component);
   return Component.el;
