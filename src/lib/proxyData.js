@@ -4,7 +4,7 @@
  */
 export default function (object, value, fun, state = false) {
   // 生命周期调用
-  if (this.life.initData) { this.life.initData.call(this, object) };
+  if (this.life && this.life.initData) { this.life.initData.call(this, object) };
 
   let _this = this;
   //内部函数方便自调用
@@ -18,7 +18,7 @@ export default function (object, value, fun, state = false) {
           return addobject
         },
         set(val) {
-          if (typeof val === 'string' || typeof val === 'number' || val instanceof Object) {
+          if (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean' || val instanceof Object) {
             if (JSON.stringify(addobject) !== JSON.stringify(val)) {
               addobject = val;
               d_fun.call(_this);

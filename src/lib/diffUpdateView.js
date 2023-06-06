@@ -1,5 +1,5 @@
 import { err, warn } from "../tools";
-import { NAME_SPACE, HTML_TAGS } from "../tools/dict"
+import { NAME_SPACE, HTML_TAGS, EVENT_HANDLERS } from "../tools/dict"
 /**
  * 新旧虚拟DOM对比差异,调用对应函数更新视图
  * @param {*} oldVnode 旧虚拟DOM
@@ -46,7 +46,9 @@ export default function (oldVnode, newVnode) {
       case 'key':
         break;
       default:
-        dom.setAttribute(value, attr[value]);
+        if (!(value in EVENT_HANDLERS)) {
+          dom.setAttribute(value, attr[value]);
+        }
         break
     }
   }

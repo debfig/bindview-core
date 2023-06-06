@@ -466,6 +466,14 @@ const CUSTOM_ATTR = {
   },
 }
 
+// 创建跟 svg 相关的标签
+function createTag(tag) {
+  return () => {
+    const ns = 'http://www.w3.org/2000/svg';
+    return document.createElementNS(ns, tag);
+  }
+}
+
 // 命名空间标签
 const NAME_SPACE = {
   svg: function () {
@@ -475,14 +483,11 @@ const NAME_SPACE = {
     el.setAttribute('xmlns:xlink', xlinkns);
     return el;
   },
-  use: function () {
-    const ns = 'http://www.w3.org/2000/svg';
-    return document.createElementNS(ns, 'use');
-  },
-  path: function () {
-    const ns = 'http://www.w3.org/2000/svg';
-    return document.createElementNS(ns, 'path');
-  }
+  use: createTag('use'),
+  path: createTag('path'),
+  rect: createTag('rect'),
+  text: createTag('text'),
+  circle: createTag('circle'),
 }
 
 
