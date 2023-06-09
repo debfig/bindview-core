@@ -13,10 +13,17 @@ export default function (oldVnode, newVnode) {
    * @param {*} key key 
    * @param {*} style style
    */
-  function upDateStyle(key, style) {
+  function upDateStyle(key, style, oldstyle) {
     let dom = _this._KeyMapDom.get(key);
     for (let i in style) {
-      dom.style[i] = style[i];
+      if (style[i] !== oldstyle[i]) {
+        if (typeof style[i] === 'number') {
+          dom.style[i] = `${style[i]}px`;
+        }
+        if (typeof style[i] === 'string') {
+          dom.style[i] = style[i];
+        }
+      }
     }
   }
 
@@ -188,7 +195,7 @@ export default function (oldVnode, newVnode) {
           for (let j in newVnode[i]) {
             // 对属性中的 style 进行处理
             if (j === 'style') {
-              JSON.stringify(oldVnode[i]['style']) !== JSON.stringify(newVnode[i]['style']) ? upDateStyle(newVnode.key, newVnode[i]['style']) : true;
+              JSON.stringify(oldVnode[i]['style']) !== JSON.stringify(newVnode[i]['style']) ? upDateStyle(newVnode.key, newVnode[i]['style'], oldVnode[i]['style']) : true;
             } else {
               // 判断属性，有差异调用 upDataAttr 更新
               oldVnode[i][j] !== newVnode[i][j] ? upDataAttr(newVnode.key, j, newVnode[i]) : true;
