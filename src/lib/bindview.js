@@ -14,7 +14,7 @@ function Bindview(config) {
 }
 
 // 构造函数版本属性
-Bindview.version = '2.0.7';
+Bindview.version = '2.1.0';
 
 // 导入挂载原型对象函数
 import proto from "./proto";
@@ -93,7 +93,8 @@ Bindview.prototype._deepClone = deepClone;
 
 // 导入和挂载DIFF更新函数
 import diffUpdateView from "./diffUpdateView";
-Bindview.prototype._diffUpdateView = diffUpdateView;
+import main from "./Diff_Cors/main"
+Bindview.prototype._diffUpdateView = main;
 
 // 全局组件
 Bindview.prototype._publicComponents = Object.create(Object.prototype);
