@@ -134,8 +134,9 @@
       )
     },
     life: {
-    	initData(data) {
-      		console.log('data初始化前', data);
+    	initData(before,data) {
+      		console.log('data初始化前', before);
+            //data 为接收响应数据的对象
     	},
     	domUpdata() {
       		console.log('DOM数量变化后');
@@ -549,5 +550,33 @@ new Bindview({
 }).$mount('#Root')
 // 该挂载组件方法只适合在 new Bindview 的时候
 // 参数为一个是 $mount 会在页面上获取这个 DOM元素并将该组件挂载上去
+```
+
+> ### 15. 动态创建组件
+>
+> 动态组件需要一个不会改变的 `id` 属性
+
+```jsx
+import Dome1 from "./Dome1"
+import Dome2 from "./Dome2"
+
+export default function (props) {
+  let { state } = props
+  let { uuid } = this
+  let a = uuid(), b = uuid()
+
+  return {
+    name: 'Test',
+    node() {
+      return state() ? <Dome1 id={a} /> : <Dome2 id={b} />
+    },
+    life: {
+      createDom() {
+        console.log(this);
+      }
+    },
+    module: { Dome1, Dome2 }
+  }
+}
 ```
 
