@@ -35,7 +35,7 @@ export default function () {
   function bianli(newValue, oldValue) {
     // 新获取的Vnode没有key将旧的key 赋值给新的 
     if (oldValue != undefined) {
-      if (oldValue.type === "text") {
+      if (oldValue.type && oldValue.type === "text") {
         newValue.key = oldValue.key;
       } else {
         newValue.key = oldValue.key;

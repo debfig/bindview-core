@@ -28,7 +28,9 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
       el = NAME_SPACE[tagName]();
     } else if (tagName in this._module) {
       // 判断是不是组件标签 是组件标签的创造组件传递组件参数后 return 
-      return this._initComponents(this._module[tagName], props, childNodes);
+      // 给组件添加唯一id
+      let newProps = props.id ? props : { ...props, id: this._uuid() }
+      return this._initComponents(this._module[tagName], newProps, childNodes);
     } else {
       err(`没有注册 ${tagName} 这个组件`)
     }

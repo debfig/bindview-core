@@ -1,3 +1,6 @@
+/**
+ * html 标签
+ */
 const HTML_TAGS = {
   a: {
     name: 'a',
@@ -381,6 +384,9 @@ const GLOBAL_ATTRIBUTES = {
   "xlink:href": 'xlink:href',
   "aria-hidden": 'aria-hidden'
 }
+/**
+ * 事件
+ */
 const EVENT_HANDLERS = {
   onClick: 'click',
   onFocus: 'focus',
@@ -474,7 +480,9 @@ function createTag(tag) {
   }
 }
 
-// 命名空间标签
+/**
+ * 命名空间标签
+ */
 const NAME_SPACE = {
   svg: function () {
     const ns = 'http://www.w3.org/2000/svg';

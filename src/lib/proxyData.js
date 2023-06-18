@@ -4,7 +4,7 @@
  */
 export default function (object, value, fun, state = false) {
   // 生命周期调用
-  if (this.life && this.life.initData) { this.life.initData.call(this, object) };
+  if (this.life && this.life.initData) { this.life.initData.call(this, value, object) };
 
   let _this = this;
   //内部函数方便自调用
@@ -25,8 +25,8 @@ export default function (object, value, fun, state = false) {
               // 调用函更新数组件
               _this._upDateComponent();
 
-              //* 生命周期调用
-              if (_this.life.upDate) { _this.life.upDate.call(_this) };
+              // //* 生命周期调用
+              // if (_this.life.upDate) { _this.life.upDate.call(_this) };
             }
           }
         }

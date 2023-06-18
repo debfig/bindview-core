@@ -36,7 +36,7 @@ export default function (config) {
   // 获取Dom元素
   this.refs = new Object();
 
-  // DOM的键值映射
+  // DOM的键值映射 
   this._KeyMapDom = new Map();
 
   // 当前对象是不是一个组件
@@ -47,8 +47,8 @@ export default function (config) {
   // 向外暴露接口
   this._modulePort = config.modulePort ? this._handlePotrThis(config.modulePort) : new Object();
 
-  // 组间key
-  this._moduleKey = this._uuid();
+  // 组件key
+  this._moduleKey = this.isModule ? this._uuid() : 'Root';
 
   //Map记录子组件
   this._Components = new Map();

@@ -21,6 +21,7 @@ export default function (module, prop, slot) {
         return null;
       }
     })(),
+    uuid: _this._uuid
   }
 
   Component.__proto__ = this.__proto__;
@@ -28,6 +29,8 @@ export default function (module, prop, slot) {
     let moduleExample = module.call(config, prop);
     moduleExample.isModule = true;
     Component._Init(moduleExample)
+    // 添加组件key
+    Component._moduleKey = prop.id;
     Component._clearModules = this._clearModule();
     this._Components.set(Component._moduleKey, Component)
   }
