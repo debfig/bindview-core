@@ -7,6 +7,13 @@ export default function (JSXVonde) {
   newVnode.elementName = JSXVonde.elementName;
   newVnode.attributes = JSXVonde.attributes;
   newVnode.key = this._uuid()
+  if (typeof JSXVonde === "string" || typeof JSXVonde === "number") {
+    return {
+      type: 'text',
+      key: this._uuid(),
+      value: JSXVonde
+    }
+  }
   if (JSXVonde.children && JSXVonde.children.length && JSXVonde.children.length > 1) {
     newVnode.children = [];
     for (let i = 0; i < JSXVonde.children.length; i++) {
