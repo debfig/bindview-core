@@ -14,7 +14,7 @@ function Bindview(config) {
 }
 
 // 构造函数版本属性
-Bindview.version = '2.1.0';
+Bindview.version = '2.1.1';
 
 // 导入挂载原型对象函数
 import proto from "./proto";
