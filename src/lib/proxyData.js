@@ -40,11 +40,12 @@ export default function (object, value, fun, state = false) {
         newPrototype[method] = function (...args) {
           // 关键部分 我们使用延时定时器将函数调用由同步变为异步操作
           // 这步是为了让对数组的的操作先执行，在执行函数的调用
-          setTimeout(function () {
-            funs.call(_this);
-            // 调用函更新数组件
-            _this._upDateComponent();
-          }, 0);
+
+          Promise.resolve().then(function () {
+            funs.call(_this)
+          }).then(function () {
+            _this._upDateComponent()
+          })
 
           let tempdata = args;
           let tempObj = null;
