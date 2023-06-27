@@ -16,7 +16,7 @@ export default function (config) {
   //映射dom树
   this._Original.set('_Original_Vnode', config);
 
-  this.el = config.el instanceof HTMLElement ? config.el : typeof config.el === "string" ? document.querySelector(config.el) : err("el 配置项应该为DOM或选择器");
+  this.el = config.el instanceof HTMLElement ? config.el : typeof config.el === "string" ? document.querySelector(config.el) : null;
 
   // 生命周期
   this.life = config.life !== undefined ? config.life : new Object();
