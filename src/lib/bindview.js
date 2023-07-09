@@ -123,6 +123,10 @@ Bindview.prototype._handlePort = handlePort;
 import clearModule from "./clearModule";
 Bindview.prototype._clearModule = clearModule;
 
+// 手动更新视图
+import mupdate from './mupdate'
+Bindview.prototype.$mupdate = mupdate;
+
 console.log(`%c bindview.js %c v${Bindview.version} `,
   'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',
   'background: #41b883; padding: 1px; border-radius: 0 3px 3px 0; color: #fff',);
