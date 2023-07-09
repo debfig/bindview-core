@@ -133,10 +133,12 @@
         <div>'生命周期'</div>
       )
     },
+    data:{},
     life: {
     	initData(before,data) {
       		console.log('data初始化前', before);
             //data 为接收响应数据的对象
+            // 在配置项中必须要有 data 这个配置, initData 生命周期才会调用  
     	},
     	domUpdata() {
       		console.log('DOM数量变化后');
@@ -576,6 +578,46 @@ export default function (props) {
       }
     },
     module: { Dome1, Dome2 }
+  }
+}
+```
+
+> ### 16.手动更新视图
+>
+> `$mupdate` 方法可以手动更新视图，在修改一些没有数据响应的数据但需要更新视图时可以在修改后调用这个方法，或传入一个函数，视图更新会在回调函数执行完后，！注意 `$mupdate` 的视图更新是异步的
+
+```jsx
+export default function () {
+  return {
+    name: 'App',
+    node(h) {
+      return (
+        <div ref="Box" className="App">
+          App
+          <div>{h.datas()}</div>
+          <button onClick={h.addData}>addDatas</button>
+        </div>
+      )
+    },
+    data: {},
+    methods: {
+      addData() {
+        this.$mupdate(() => {
+          this.datas++
+        })
+      },
+      datas() {
+        return this.datas
+      }
+    },
+    life: {
+      initData() {
+        this.datas = 0
+      },
+      createDom() {
+        console.log(this);
+      }
+    }
   }
 }
 ```
