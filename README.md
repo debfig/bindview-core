@@ -94,7 +94,7 @@
       return (
         <div>
           <p ref="p1">{this.title}</p>
-          <button onClick={[h.add,'hello','bindview.js']}>'title++'</button>
+          <button onClick={h.add}>'title++'</button>
         </div>
       )
     },
@@ -102,15 +102,12 @@
       title: 0,
     },
     methods:{
-      add(DOM,Event,value1,value2){
+      add(DOM,Event){
          // 方法被事件调用 
          // 形参一为 DOM 对象 
          // 形参二为 事件对象 event 
-         // 形参三为 传递过来的参数
-         // 形参四为 传递过来的参数
-          
          // this 指向了当前实例对象
-        console.log(value1,value2);
+         console.log("hello")
       }
     }
   })
@@ -194,13 +191,13 @@
 
 >定义一个组件
 ```jsx
-import "./index.less"
+import style from "./index.less"
 // 组件暴露的是一个方法,在组件中不需要添加 el 配置项
 export default function () {
   return {
     node(h) {
       return (
-        <div class="Test1">
+        <div class={style["Test1"]}>
           <div>"Test1 组件"</div>
         </div>
       )
