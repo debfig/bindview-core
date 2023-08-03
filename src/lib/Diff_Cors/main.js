@@ -91,8 +91,8 @@ export default function (oldVnode, newVnode) {
           continue
         } else if (
           (newVnode.children.length === oldVnode.children.length) ||
-          (newVnode.children.length === 1 && oldVnode.children[0].type) ||
-          (newVnode.children[0].type && oldVnode.children.length === 1)
+          (newVnode.children.length === 1 && oldVnode.children[0] && oldVnode.children[0].type) ||
+          (newVnode.children[0] && newVnode.children[0].type && oldVnode.children.length === 1)
         ) {
           //TODO 子节点长度不变
           for (let j = 0; j < newVnode[i].length; j++) {
