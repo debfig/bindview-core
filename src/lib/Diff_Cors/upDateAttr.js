@@ -26,7 +26,7 @@ export default function (key, value, attr) {
       warn("动态修改 ref 属性,非常非常不推荐使用");
       break;
     case 'value':
-      if (dom.tagName === "INPUT") {
+      if (dom.tagName === "INPUT" || dom.tagName === "TEXTAREA") {
         dom.value = attr[value]
       }
       break

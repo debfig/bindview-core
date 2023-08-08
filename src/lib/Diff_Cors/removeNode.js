@@ -20,7 +20,6 @@ export default function (newVnode, oldVnode) {
    * @param {*} Vnode 虚拟DOm 
    */
   function deleteELement(Vnode) {
-    console.log(Vnode);
     let DOM = _this._KeyMapDom.get(Vnode.key)
     DOM.remove();
     _this._KeyMapDom.delete(Vnode.key);
