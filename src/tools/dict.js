@@ -284,6 +284,7 @@ const HTML_TAGS = {
       name: 'name',
       required: 'required',
       size: 'size',
+      value: 'value'
     }
   },
   small: 'small',

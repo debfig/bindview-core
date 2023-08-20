@@ -42,12 +42,27 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
   // 对属性进行操作
   Object.keys(props).forEach(prop => {
     if (prop in attrs) {
-      if (prop === 'xlink:href') {
-        el.setAttributeNS('http://www.w3.org/1999/xlink', prop, props[prop]);
-      } else {
-        el.setAttribute(attrs[prop], props[prop])
+      switch (prop) {
+        case "xlink:href":
+          el.setAttributeNS('http://www.w3.org/1999/xlink', prop, props[prop]);
+          break;
+        case "value":
+          if ("value" in el) {
+            if (el.tagName === "SELECT") {
+              Promise.resolve().then(function () {
+                el.value = props[prop]
+              })
+            } else {
+              el.value = props[prop]
+            }
+          } else {
+            el.setAttribute(attrs[prop], props[prop]);
+          }
+          break
+        default:
+          el.setAttribute(attrs[prop], props[prop]);
+          break;
       }
-
     }
     if (prop in EVENT_HANDLERS) {
       if (props[prop] instanceof Array && props[prop].length > 1) {
