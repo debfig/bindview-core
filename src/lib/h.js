@@ -1,16 +1,14 @@
 import { err } from "../tools"
+import { Vnode } from "./vdom";
 /**
  * h 函数,创建Vnode
  * @returns Vnode
  */
 export default function () {
   let tempVnode = null;
+
   function createVnode(a, b, c) {
-    return {
-      elementName: a,
-      attributes: b,
-      children: c
-    }
+    return new Vnode(a, b, c)
   }
 
   switch (arguments.length) {

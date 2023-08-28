@@ -324,6 +324,7 @@ const HTML_TAGS = {
       rows: 'rows',
       selectionDirection: 'selectionDirection',
       wrap: 'wrap',
+      value: 'value'
     }
   },
   td: 'td',

@@ -63,4 +63,7 @@ export default function (config) {
 
   // 生命周期调用
   if (this.life.createDom) { this.life.createDom.call(this) };
+
+  // 返回当前对象
+  return this
 }
