@@ -12,5 +12,5 @@ export default function () {
   })
   this.el.remove();
   // 通知父组件删除组件实例
-  this._clearModules(this._moduleKey)
+  this._clearModules && this._clearModules(this._moduleKey)
 }
