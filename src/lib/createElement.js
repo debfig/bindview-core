@@ -12,6 +12,8 @@ import { NAME_SPACE, CUSTOM_ATTR, GLOBAL_ATTRIBUTES, EVENT_HANDLERS, HTML_TAGS }
  */
 export default function createElement(tagName, props = {}, key, ...childNodes) {
 
+  const _this = this
+
   if (props === null) {
     props = {}
   }
@@ -66,22 +68,9 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
       }
     }
     if (prop in EVENT_HANDLERS) {
-      if (props[prop] instanceof Array && props[prop].length > 1) {
-        let callbackData = [];
-        for (let i = 1; i <= props[prop].length - 1; i++) {
-          callbackData.push(props[prop][i])
-        }
+      if (props[prop] instanceof Function) {
         el.addEventListener(EVENT_HANDLERS[prop], function (e) {
-          props[prop][0](this, e, ...callbackData);
-        })
-      } else if (props[prop] instanceof Array && props[prop].length == 1) {
-        props[prop][0] instanceof Function ? true : err(`${JSON.stringify(props[prop])} 应为 Function`)
-        el.addEventListener(EVENT_HANDLERS[prop], function (e) {
-          props[prop][0](this, e);
-        })
-      } else if (props[prop] instanceof Function) {
-        el.addEventListener(EVENT_HANDLERS[prop], function (e) {
-          props[prop](this, e);
+          props[prop].call(_this, this, e);
         })
       } else {
         err(`${JSON.stringify(props[prop])} 不正确`)
