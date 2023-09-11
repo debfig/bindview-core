@@ -1,6 +1,7 @@
 import { err } from "../tools"
 // 导入字典
 import { NAME_SPACE, CUSTOM_ATTR, GLOBAL_ATTRIBUTES, EVENT_HANDLERS, HTML_TAGS } from "../tools/dict"
+
 /**
  * 将虚拟节点创建为真实节点
  * @param {*} tagName 标签名

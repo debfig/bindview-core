@@ -5,6 +5,9 @@ import { err } from "../tools"
  */
 export default function (config) {
 
+  // 生命周期初始化之前
+  if (config.life && config.life.beforeInit) { config.life.beforeInit.call(this, config) }
+
   // name 属性
   if (config.name) this.name = config.name;
 
@@ -25,10 +28,11 @@ export default function (config) {
   this.data = config.data !== undefined ? this._proxyData(this._createData(), config.data, this._upDate) : this._createData()
 
   // methods方法对象
-  this.methods = typeof config.methods === 'object' ? this._mountMethods(config.methods) : new Object();
+  // this.methods = typeof config.methods === 'object' ? this._mountMethods(config.methods) : new Object();
+  this.methods = typeof config.methods === 'object' ? config.methods : new Object();
 
   // 获取JSXVnode并对子节点为文本的进行处理
-  this.Vnode = config.node ? config.node instanceof Function ? this._handleJSXVonde(config.node.call(this.data, this._h)) : err('config.node 必须是 Function 类型的') : err('config.node 为 null');
+  this.Vnode = config.node ? config.node instanceof Function ? this._handleJSXVonde(config.node.call(this, this._h)) : err('config.node 必须是 Function 类型的') : err('config.node 为 null');
 
   // 记录旧的Vnode, 初始化时没有旧节点直接克隆一份
   this._oldVnode = this._deepClone(this.Vnode);

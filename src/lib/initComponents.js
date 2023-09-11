@@ -9,7 +9,7 @@ export default function (module, prop, slot) {
   // 组件函数的this将指向这个对象
   const config = {
     slot: (function () {
-      if (slot.length && slot.length > 1) {
+      if (slot && slot.length && slot.length > 1) {
         return () => slot;
       } else if (slot.length && slot.length === 1) {
         if (slot[0] instanceof Function) {

@@ -4,7 +4,7 @@
 export default function () {
 
   // 通过node获取最新的虚拟DOM
-  let Original = this._handleJSXVonde(this._Original.get('_Original_Vnode').node.call(this.data, this._h));
+  let Original = this._handleJSXVonde(this._Original.get('_Original_Vnode').node.call(this, this._h));
 
   /**
    * 处理循环创建的 Vnode, 循环遍历创建的Vnode带有Key属性

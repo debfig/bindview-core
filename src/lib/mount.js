@@ -8,7 +8,7 @@ export default function (container, module) {
   switch (arguments.length) {
     case 1:
       Container.appendChild(this.el)
-      break;
+      return this
     case 2:
       const component = new Object();
       component.__proto__ = this.__proto__

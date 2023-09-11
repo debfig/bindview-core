@@ -9,12 +9,20 @@ function Bindview(config) {
   } else {
     if (typeof config !== undefined && config instanceof Object) {
       this._Init(config);
+      if (Bindview.dispalyVer) {
+        console.log(`%c bindview.js %c v${Bindview.version} `,
+          'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',
+          'background: #41b883; padding: 1px; border-radius: 0 3px 3px 0; color: #fff',);
+      }
     }
   }
 }
 
 // 构造函数版本属性
 Bindview.version = '2.1.4';
+
+// 是否显示版本配置属性
+Bindview.dispalyVer = true
 
 // 导入挂载原型对象函数
 import proto from "./proto";
@@ -63,10 +71,6 @@ Bindview.prototype._uuid = uuid;
 import h from "./h";
 Bindview.prototype._h = h;
 
-// 将methods配置对象挂载到 h 函数上
-import mountMethods from "./mountMethods";
-Bindview.prototype._mountMethods = mountMethods;
-
 // 导入JSX虚拟DOM处理函数
 import handleJSXVonde from "./handleJSXVonde";
 Bindview.prototype._handleJSXVonde = handleJSXVonde;
@@ -92,7 +96,8 @@ import deepClone from "./deepClone"
 Bindview.prototype._deepClone = deepClone;
 
 // 导入和挂载DIFF更新函数
-import diffUpdateView from "./diffUpdateView";
+// 旧的 DIFF 更新函数,已弃用
+// import diffUpdateView from "./diffUpdateView";
 import main from "./Diff_Cors/main"
 Bindview.prototype._diffUpdateView = main;
 
@@ -126,10 +131,6 @@ Bindview.prototype._clearModule = clearModule;
 // 手动更新视图
 import mupdate from './mupdate'
 Bindview.prototype.$mupdate = mupdate;
-
-console.log(`%c bindview.js %c v${Bindview.version} `,
-  'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',
-  'background: #41b883; padding: 1px; border-radius: 0 3px 3px 0; color: #fff',);
 
 
 // 向外暴露构造函数
