@@ -15,5 +15,5 @@
 Bindview.js，是一个使用虚拟 `DOM` 来创建真实 `DOM` 并提供了数据响应式的 `Javascript` 工具库
 
 ## 文档
-<a href="./Manual">开发文档</a>
+<a href="./Manual.md">开发文档</a>
 
