@@ -4,7 +4,6 @@
  * @param {*} prop 组件参数
  */
 export default function (module, prop, slot) {
-  let _this = this
   let Component = new Object();
   // 组件函数的this将指向这个对象
   const config = {
@@ -20,8 +19,7 @@ export default function (module, prop, slot) {
       } else {
         return null;
       }
-    })(),
-    uuid: _this._uuid
+    })()
   }
 
   Component.__proto__ = this.__proto__;

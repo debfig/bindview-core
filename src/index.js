@@ -1,6 +1,7 @@
 // tools 
 import send from "./tools/send"
 import createApp from "./tools/createApp";
+import createId from "./tools/createId";
 
 // 导入构造函数
 import bindview from "./lib/bindview";
@@ -13,5 +14,6 @@ const Bindview = bindview
 export {
   Bindview,
   send,
-  createApp
+  createApp,
+  createId
 }

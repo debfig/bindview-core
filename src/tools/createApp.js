@@ -1,5 +1,4 @@
 import { Bindview } from "..";
-import uuid from "../lib/uuid";
 
 /**
  * 创建应用
@@ -9,7 +8,7 @@ import uuid from "../lib/uuid";
 export default function createApp(module, props) {
   let App = new Object();
   App.__proto__ = Bindview.prototype
-  let NewModule = module.call({ uuid }, Object.prototype.toString.call(props) === '[object Object]' ? props : {})
+  let NewModule = module(Object.prototype.toString.call(props) === '[object Object]' ? props : {})
   NewModule.isModule = true
   return App._Init(NewModule)
 }
