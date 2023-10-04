@@ -8,18 +8,18 @@ function Bindview(config) {
     err(new Error('bindview is a constructor and should be called with the `new` keyword'));
   } else {
     if (typeof config !== undefined && config instanceof Object) {
-      this._Init(config);
       if (Bindview.dispalyVer) {
         console.log(`%c bindview.js %c v${Bindview.version} `,
           'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',
           'background: #41b883; padding: 1px; border-radius: 0 3px 3px 0; color: #fff',);
       }
+      this._Init(config);
     }
   }
 }
 
 // 构造函数版本属性
-Bindview.version = '2.1.4';
+Bindview.version = '2.2.1';
 
 // 是否显示版本配置属性
 Bindview.dispalyVer = true
@@ -131,7 +131,6 @@ Bindview.prototype._clearModule = clearModule;
 // 手动更新视图
 import mupdate from './mupdate'
 Bindview.prototype.$mupdate = mupdate;
-
 
 // 向外暴露构造函数
 export default Bindview;

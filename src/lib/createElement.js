@@ -91,16 +91,20 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
   })
   if ('style' in props) {
     const styles = props.style
-    Object.keys(styles).forEach(prop => {
-      const value = styles[prop]
-      if (typeof value === 'number') {
-        el.style[prop] = `${value}px`
-      } else if (typeof value === 'string') {
-        el.style[prop] = value
-      } else {
-        throw new Error(`[bindview] 应为 number 或 string ，但收到 "${typeof value}"`)
-      }
-    })
+    if (typeof styles === 'string') {
+      el.style = styles
+    } else {
+      Object.keys(styles).forEach(prop => {
+        const value = styles[prop]
+        if (typeof value === 'number') {
+          el.style[prop] = `${value}px`
+        } else if (typeof value === 'string') {
+          el.style[prop] = value
+        } else {
+          throw new Error(`[bindview] 应为 number 或 string ，但收到 "${typeof value}"`)
+        }
+      })
+    }
   }
   childNodes.forEach(childNode => {
     if (typeof childNode === 'object') {

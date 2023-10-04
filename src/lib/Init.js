@@ -1,4 +1,4 @@
-import { err } from "../tools"
+import { err, warn } from "../tools"
 /**
  * 初始化 bindview
  * @param {*} config 配置项
@@ -10,6 +10,9 @@ export default function (config) {
 
   // name 属性
   if (config.name) this.name = config.name;
+
+  // 当前对象是不是一个组件
+  this.isModule = config.isModule !== undefined ? config.isModule : false;
 
   // 父组件data更新后对子组件的更新控制
   this._linkage = config.linkage !== undefined ? config.linkage : true;
@@ -42,9 +45,6 @@ export default function (config) {
 
   // DOM的键值映射 
   this._KeyMapDom = new Map();
-
-  // 当前对象是不是一个组件
-  this.isModule = config.isModule !== undefined ? config.isModule : false;
 
   // 将子组件的接口挂载在port上
   this.port = new Object();
