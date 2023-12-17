@@ -102,7 +102,7 @@ export default function (oldVnode, newVnode) {
           //TODO 子节点增加
           if (
             (newVnode[i].length !== 0) &&
-            (newVnode[i][0].type || newVnode[i][0].attributes.key === undefined)
+            (newVnode[i][0].type || newVnode[i][0].attributes.key === void 0)
           ) {
             //* 通过判断 attributes 中的 key 判断是否是循环创建的还是替换时子节点增加了
             upDateNode.call(this, oldVnode, newVnode)
@@ -131,7 +131,7 @@ export default function (oldVnode, newVnode) {
           //* 通过判断 attributes 中的 key 判断是否是循环创建的还是替换时子节点减少了
           if (
             (newVnode[i].length !== 0) &&
-            (newVnode[i][0].type || newVnode[i][0].attributes.key === undefined)
+            (newVnode[i][0].type || newVnode[i][0].attributes.key === void 0)
           ) {
             upDateNode.call(this, oldVnode, newVnode)
           } else {

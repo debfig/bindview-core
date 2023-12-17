@@ -24,7 +24,7 @@ export default function (JSXVonde) {
         }
       })()
     }
-  } else if (JSXVonde.children === null || JSXVonde.children[0] === undefined) {
+  } else if (JSXVonde.children === null || JSXVonde.children[0] === void 0) {
     newVnode.children = [];
   } else if (typeof JSXVonde.children[0] === 'string' || typeof JSXVonde.children[0] === 'number') {
     newVnode.children = [];

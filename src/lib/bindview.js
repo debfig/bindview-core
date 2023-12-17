@@ -7,7 +7,7 @@ function Bindview(config) {
   if (!(this instanceof Bindview)) {
     err(new Error('bindview is a constructor and should be called with the `new` keyword'));
   } else {
-    if (typeof config !== undefined && config instanceof Object) {
+    if (typeof config !== void 0 && config instanceof Object) {
       if (Bindview.dispalyVer) {
         console.log(`%c bindview.js %c v${Bindview.version} `,
           'background: #35495e; padding: 1px; border-radius: 3px 0 0 3px; color: #fff;',

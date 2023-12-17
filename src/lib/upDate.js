@@ -34,13 +34,13 @@ export default function () {
    */
   function bianli(newValue, oldValue) {
     // 新获取的Vnode没有key将旧的key 赋值给新的 
-    if (oldValue != undefined) {
+    if (oldValue != void 0) {
       if (oldValue.type && oldValue.type === "text") {
         newValue.key = oldValue.key;
       } else {
         newValue.key = oldValue.key;
         if (newValue.children ? newValue.children.length > 0 : false) {
-          if (newValue.children[0].attributes ? newValue.children[0].attributes.key !== undefined ? true : false : false) {
+          if (newValue.children[0].attributes ? newValue.children[0].attributes.key !== void 0 ? true : false : false) {
             loopNode(oldValue.children, newValue.children);
           } else {
             for (let i = 0; i < newValue.children.length; i++) {

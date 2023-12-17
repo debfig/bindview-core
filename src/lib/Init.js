@@ -12,10 +12,10 @@ export default function (config) {
   if (config.name) this.name = config.name;
 
   // 当前对象是不是一个组件
-  this.isModule = config.isModule !== undefined ? config.isModule : false;
+  this.isModule = config.isModule !== void 0 ? config.isModule : false;
 
   // 父组件data更新后对子组件的更新控制
-  this._linkage = config.linkage !== undefined ? config.linkage : true;
+  this._linkage = config.linkage !== void 0 ? config.linkage : true;
 
   // 创建用于获取原始 Vnode 的Map映射
   this._Original = new Map();
@@ -25,10 +25,10 @@ export default function (config) {
   this.el = config.el instanceof HTMLElement ? config.el : typeof config.el === "string" ? document.querySelector(config.el) : null;
 
   // 生命周期
-  this.life = config.life !== undefined ? config.life : new Object();
+  this.life = config.life !== void 0 ? config.life : new Object();
 
   // 代理数据
-  this.data = config.data !== undefined ? this._proxyData(this._createData(), config.data, this._upDate) : this._createData()
+  this.data = config.data !== void 0 ? this._proxyData(this._createData(), config.data, this._upDate) : this._createData()
 
   // methods方法对象
   // this.methods = typeof config.methods === 'object' ? this._mountMethods(config.methods) : new Object();
@@ -58,7 +58,7 @@ export default function (config) {
   this._Components = new Map();
 
   //组件初始化
-  let module = config.module !== undefined ? { ...config.module } : new Object();
+  let module = config.module !== void 0 ? { ...config.module } : new Object();
   module.__proto__ = this._publicComponents;
   this._module = module;
 

@@ -1,6 +1,8 @@
 import { err } from "../tools"
 // 导入字典
 import { NAME_SPACE, CUSTOM_ATTR, GLOBAL_ATTRIBUTES, EVENT_HANDLERS, HTML_TAGS } from "../tools/dict"
+// 设置属性
+import setNodeAttr from "./setNodeAttr"
 
 /**
  * 将虚拟节点创建为真实节点
@@ -25,7 +27,7 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
 
   // 创建DOM元素并添加Key值
   let el = null;
-  if (tagType === undefined) {
+  if (tagType === void 0) {
     // 判断是不是命名空间标签
     if (tagName in NAME_SPACE) {
       el = NAME_SPACE[tagName]();
@@ -44,7 +46,7 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
 
   // 对属性进行操作
   Object.keys(props).forEach(prop => {
-    if (prop in attrs) {
+    if (prop[0] === "_" ? prop.split("_")[1] in attrs : prop in attrs) {
       switch (prop) {
         case "xlink:href":
           el.setAttributeNS('http://www.w3.org/1999/xlink', prop, props[prop]);
@@ -63,7 +65,8 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
           }
           break
         default:
-          el.setAttribute(attrs[prop], props[prop]);
+          // el.setAttribute(attrs[prop], props[prop]);
+          setNodeAttr(prop, props[prop], el)
           break;
       }
     }
@@ -85,7 +88,7 @@ export default function createElement(tagName, props = {}, key, ...childNodes) {
       }
     }
     // 标签上自定义属性的添加
-    if (!(prop in attrs || prop in EVENT_HANDLERS || prop in CUSTOM_ATTR)) {
+    if (!(prop[0] === "_" ? prop.split("_")[1] in attrs : prop in attrs || prop in EVENT_HANDLERS || prop in CUSTOM_ATTR)) {
       el.setAttribute(prop, props[prop])
     }
   })

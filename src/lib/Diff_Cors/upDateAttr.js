@@ -1,5 +1,6 @@
 import { warn } from "../../tools";
 import { EVENT_HANDLERS } from "../../tools/dict"
+import setNodeAttr from "../setNodeAttr";
 
 /**
  * 更新属性
@@ -39,7 +40,8 @@ export default function (key, value, attr) {
       break;
     default:
       if (!(value in EVENT_HANDLERS)) {
-        dom.setAttribute(value, attr[value]);
+        // dom.setAttribute(value, attr[value]);
+        setNodeAttr(value, attr[value], dom)
       }
       break
   }
